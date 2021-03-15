@@ -3,7 +3,7 @@
 ## Setup
 
 ```bash
-# Install required packages
+# Install required packages.
 yarn
 
 # For development without purging/minification
