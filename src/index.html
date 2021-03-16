@@ -11,31 +11,31 @@
 
 <body>
 	<!-- Memory Game -->
-	<div x-data="game()" class="px-10 flex items-center justify-center min-h-screen">
-		<h1 class="fixed top-0 right-0 p-10 font-bold text-3xl">
+	<div x-data="game()" class="flex justify-center items-center min-h-screen px-10">
+		<h1 class="top-0 left-0 p-10 fixed">
 			<span x-text="points"></span>
-			<span class="text-xs">pts</span>
+			<span>Points</span>
 		</h1>
-	
+
 		<div class="flex-1 grid grid-cols-4 gap-10">
 			<template x-for="(card, index) in cards" :key="index">
 				<div>
-					<button x-show="! card.cleared" :style="'background: ' + (card.flipped ? card.color : '#999')"
-						:disabled="flippedCards.length >= 2" class="w-full h-32" @click="flipCard(card)">
+					<button x-bind:disabled="flippedCards.length >= 4" x-show="! card.cleared"
+						x-bind:style="'background: ' + (card.flipped ? card.color : '#999')" class="w-full h-32" @click="flipCard(card)">
 					</button>
 				</div>
 			</template>
 		</div>
 	</div>
-	
-	<!-- Flash Message -->
-	<div x-data="{ show: false, message: '' }" x-show.transition.opacity="show" x-text="message" @flash.window="
-		            message = $event.detail.message;
-		            show = true;
-		            setTimeout(() => show = false, 1000)
-		        " class="fixed bottom-0 right-0 bg-green-500 text-white p-2 mb-4 mr-4 rounded">
-	</div>
 
+
+
+	<!-- Flash Message -->
+
+
+	<div x-data="{ show: false, message:'' }" x-show.transition.opacity="show" x-text="message"
+		@flash.window="message = $event.detail.message; show = true; setTimeout(() => show = false, 1000)"
+		class="bg-green-500 text-white fixed bottom-0 left-0 p-2 mb-4 ml-4"></div>
 	<script>
 		function pause(milliseconds = 1000) {
 			return new Promise(resolve => setTimeout(resolve, milliseconds));
